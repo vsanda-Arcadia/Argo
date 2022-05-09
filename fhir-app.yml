@@ -1,23 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: arcadia-fhir-api
-  namespace: argocd
-spec:
-  project: default
-        
-  source:
-    repoURL: https://github.com/vsanda-Arcadia/Argo.git
-    targetRevision: HEAD
-    path: fhir
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: fhirapi
+  apiVersion: argoproj.io/v1alpha1
+  kind: Application
+  metadata:
+    name: fhir-api-application
+    namespace: argocd
+  spec:
+    project: default
 
-  syncPolicy:
+    source:
+      repoURL: https://github.com/vsanda-Arcadia/Argo.git
+      targetRevision: HEAD
+      path: dev
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: fhirapi
+
+    syncPolicy:
       syncOptions:
       - CreateNamespace=true
 
       automated:
         selfHeal: true
         prune: true
+
