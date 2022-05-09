@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-fhir-api
+spec:
+  selector:
+    matchLabels:
+      app: arcadia-fhir
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: arcadia-fhir
+    spec:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: web-nodegroup-tgw
+      containers:
+      - name: arcadia-fhir-api
+        image: 498769975733.dkr.ecr.us-east-1.amazonaws.com/arcadia.io/arcadia-fhir-api:20220422-22e824a
+        ports:
+        - containerPort: 8081
+      restartPolicy: Always
