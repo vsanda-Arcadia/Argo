@@ -5,7 +5,9 @@ apiVersion: argoproj.io/v1alpha1
     namespace: argocd
   spec:
     project: default
-
+    nodeSelector:
+        eks.amazonaws.com/nodegroup: web-nodegroup-tgw
+        
     source:
       repoURL: https://github.com/vsanda-Arcadia/Argo.git
       targetRevision: HEAD
