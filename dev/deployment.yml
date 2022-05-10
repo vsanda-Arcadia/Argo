@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fhir-api-deployment
+  name: fhirapi-deployment
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,10 @@ spec:
         app: fhirapi
     spec:
       containers:
-      - name:arcadia-fhir-api
-        image: 498769975733.dkr.ecr.us-east-1.amazonaws.com/arcadia.io/arcadia-fhir-api
+      - name: fhirapi
+        image: 498769975733.dkr.ecr.us-east-1.amazonaws.com/arcadia.io/arcadia-fhir-api:20220422-22e824a
         ports:
         - containerPort: 8081
+
+
+
